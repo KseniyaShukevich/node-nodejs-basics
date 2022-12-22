@@ -3,16 +3,17 @@ import { readdir } from 'fs';
 import { checkExists } from './helpers.js';
 import { errorMessage } from './constants.js';
 
-const urlFolderToPrint = 'src/fs/files';
+const urlFolderToPrint = './files';
 
 const list = async (urlFolderToPrint) => {
-    const isFolderExists = checkExists(urlFolderToPrint);
+    const filePath = new URL(urlFolderToPrint, import.meta.url);
+    const isFolderExists = checkExists(filePath);
 
     if (!isFolderExists) {
         throw new Error(errorMessage);
     }
 
-    readdir(urlFolderToPrint, (err, files) => {
+    readdir(filePath, (err, files) => {
         if (err) throw err;
 
         console.log(files);

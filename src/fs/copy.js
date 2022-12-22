@@ -3,18 +3,20 @@ import { cp } from 'fs';
 import { checkExists } from './helpers.js';
 import { errorMessage } from './constants.js';
 
-const urlOriginFolder = 'src/fs/files';
-const urlCopyFolder = 'src/fs/files_copy';
+const urlOriginFolder = './files';
+const urlCopyFolder = './files_copy';
 
 const copy = async (urlOriginFolder, urlCopyFolder) => {
-    const isOriginFolderExists = await checkExists(urlOriginFolder);
-    const isCopyFolderExists = await checkExists(urlCopyFolder);
+    const originFilePath = new URL(urlOriginFolder, import.meta.url);
+    const copyFilePath = new URL(urlCopyFolder, import.meta.url);
+    const isOriginFolderExists = await checkExists(originFilePath);
+    const isCopyFolderExists = await checkExists(copyFilePath);
 
     if (!isOriginFolderExists || isCopyFolderExists) {
         throw new Error(errorMessage)
     }
 
-    cp(urlOriginFolder, urlCopyFolder, { recursive: true }, (err) => {
+    cp(originFilePath, copyFilePath, { recursive: true }, (err) => {
         if (err) throw err;
     });
 };
