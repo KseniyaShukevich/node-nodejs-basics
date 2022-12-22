@@ -1,16 +1,16 @@
 import { writeFile } from 'fs';
 
-import { checkFileExists } from './helpers.js';
+import { checkExists } from './helpers.js';
 import { errorMessage } from './constants.js';
 
 const url = 'src/fs/files/fresh.txt';
 const text = 'I am fresh and young';
 
 const create = async (url, text) => {
-    const isFileExist = await checkFileExists(url)
+    const isFileExist = await checkExists(url)
 
     if (isFileExist) {
-        throw Error(errorMessage);
+        throw new Error(errorMessage);
     }
 
     writeFile(url, text, (err) => {
