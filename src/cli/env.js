@@ -1,4 +1,4 @@
-const startString = 'RSS_';
+const START_STRING = 'RSS_';
 
 const parseEnv = (startString) => {
     const arrayOfEnvironments = Object.entries(process.env);
@@ -16,4 +16,4 @@ const parseEnv = (startString) => {
     })
 };
 
-parseEnv(startString);
+parseEnv(START_STRING);

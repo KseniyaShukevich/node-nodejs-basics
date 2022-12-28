@@ -1,6 +1,6 @@
 import { createReadStream } from 'fs';
 
-const urlFileToRead = './files/fileToRead.txt';
+const URL_FILE_TO_READ = './files/fileToRead.txt';
 
 const read = async (urlFileToRead) => {
     const filePath = new URL(urlFileToRead, import.meta.url);
@@ -15,4 +15,4 @@ const read = async (urlFileToRead) => {
     });
 };
 
-await read(urlFileToRead);
+await read(URL_FILE_TO_READ);

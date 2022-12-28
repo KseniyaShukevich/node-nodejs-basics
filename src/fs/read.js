@@ -1,16 +1,16 @@
 import { readFile } from 'fs';
 
 import { checkExists } from './helpers.js';
-import { errorMessage } from './constants.js';
+import { ERROR_MESSAGE } from './constants.js';
 
-const urlFileToPrint = './files/fileToRead.txt';
+const URL_FILE_TO_READ = './files/fileToRead.txt';
 
-const read = async (urlFileToPrint) => {
-    const filePath = new URL(urlFileToPrint, import.meta.url);
+const read = async (urlFileToRead) => {
+    const filePath = new URL(urlFileToRead, import.meta.url);
     const isFileExists = await checkExists(filePath);
 
     if (!isFileExists) {
-        throw new Error(errorMessage);
+        throw new Error(ERROR_MESSAGE);
     }
 
     readFile(filePath, { encoding: 'utf8' }, (err, data) => {
@@ -20,4 +20,4 @@ const read = async (urlFileToPrint) => {
     });
 };
 
-await read(urlFileToPrint);
+await read(URL_FILE_TO_READ);

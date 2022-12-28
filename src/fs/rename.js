@@ -1,10 +1,10 @@
 import fs from 'fs';
 
 import { checkExists } from './helpers.js';
-import { errorMessage } from './constants.js';
+import { ERROR_MESSAGE } from './constants.js';
 
-const urlWrongFileName = './files/wrongFilename.txt';
-const urlCorrectFileName = './files/properFilename.md';
+const URL_WRONG_FILE_NAME = './files/wrongFilename.txt';
+const URL_CORRECT_FILE_NAME = './files/properFilename.md';
 
 const rename = async (urlWrongFileName, urlCorrectFileName) => {
     const wrongFileNamePath = new URL(urlWrongFileName, import.meta.url);
@@ -13,7 +13,7 @@ const rename = async (urlWrongFileName, urlCorrectFileName) => {
     const isCorrectFileExists = await checkExists(correctFileNamePath);
 
     if (!isWrongFileExists || isCorrectFileExists) {
-        throw new Error(errorMessage);
+        throw new Error(ERROR_MESSAGE);
     }
 
     fs.rename(wrongFileNamePath, correctFileNamePath, (err) => {
@@ -21,4 +21,4 @@ const rename = async (urlWrongFileName, urlCorrectFileName) => {
     });
 };
 
-await rename(urlWrongFileName, urlCorrectFileName);
+await rename(URL_WRONG_FILE_NAME, URL_CORRECT_FILE_NAME);

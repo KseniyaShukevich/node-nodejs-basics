@@ -1,16 +1,16 @@
 import { rm } from 'fs';
 
 import { checkExists } from './helpers.js';
-import { errorMessage } from './constants.js';
+import { ERROR_MESSAGE } from './constants.js';
 
-const urlFileToDelete = './files/fileToRemove.txt';
+const URL_FILE_TO_DELETE = './files/fileToRemove.txt';
 
 const remove = async (urlFileToDelete) => {
     const filePath = new URL(urlFileToDelete, import.meta.url);
     const isFileToDeleteExists = await checkExists(filePath);
 
     if (!isFileToDeleteExists) {
-        throw new Error(errorMessage);
+        throw new Error(ERROR_MESSAGE);
     }
 
     rm(filePath, (err) => {
@@ -18,4 +18,4 @@ const remove = async (urlFileToDelete) => {
     });
 };
 
-await remove(urlFileToDelete);
+await remove(URL_FILE_TO_DELETE);

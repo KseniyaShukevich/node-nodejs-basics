@@ -1,8 +1,8 @@
 import { createReadStream, createWriteStream } from 'fs';
 import zlib from 'zlib';
 
-const urlFileToDecompress = './files/archive.gz';
-const urlFileToWrite = './files/fileToCompress.txt';
+const URL_FILE_TO_DECOMPRESS = './files/archive.gz';
+const URL_FILE_TO_WRITE = './files/fileToCompress.txt';
 
 const decompress = async (urlFileToDecompress, urlFileToWrite) => {
     const fileToReadPath = new URL(urlFileToDecompress, import.meta.url);
@@ -13,4 +13,4 @@ const decompress = async (urlFileToDecompress, urlFileToWrite) => {
     fileReadStream.pipe(zlib.createGunzip()).pipe(fileWriteStream);
 };
 
-await decompress(urlFileToDecompress, urlFileToWrite);
+await decompress(URL_FILE_TO_DECOMPRESS, URL_FILE_TO_WRITE);

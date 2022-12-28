@@ -8,10 +8,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const random = Math.random();
-const borderNumber = 0.5;
-const urlDataA = './files/a.json';
-const urlDataB = './files/b.json';
-const urlData = random > borderNumber ? urlDataA : urlDataB;
+const BORDER_NUMBER = 0.5;
+const URL_DATA_A = './files/a.json';
+const URL_DATA_B = './files/b.json';
+const urlData = random > BORDER_NUMBER ? URL_DATA_A : URL_DATA_B;
 
 export const unknownObject = await import(urlData, { assert: { type: 'json' } });
 

@@ -1,17 +1,17 @@
 import { writeFile } from 'fs';
 
 import { checkExists } from './helpers.js';
-import { errorMessage } from './constants.js';
+import { ERROR_MESSAGE } from './constants.js';
 
-const url = './files/fresh.txt';
-const text = 'I am fresh and young';
+const URL = './files/fresh.txt';
+const TEXT = 'I am fresh and young';
 
 const create = async (url, text) => {
     const filePath = new URL(url, import.meta.url);
     const isFileExist = await checkExists(filePath)
 
     if (isFileExist) {
-        throw new Error(errorMessage);
+        throw new Error(ERROR_MESSAGE);
     }
 
     writeFile(filePath, text, (err) => {
@@ -19,4 +19,4 @@ const create = async (url, text) => {
     })
 };
 
-await create(url, text);
+await create(URL, TEXT);
